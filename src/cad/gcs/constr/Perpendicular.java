@@ -49,6 +49,11 @@ public class Perpendicular implements Constraint {
   }
 
   @Override
+  public Param[] getParams() {
+    return params;
+  }
+
+  @Override
   public double[] params() {
     double[] _params = new double[8];
     _params[l1p1x] = params[l1p1x].get();
@@ -64,10 +69,10 @@ public class Perpendicular implements Constraint {
 
   @Override
   public double error() {
-    double dx1 = (params[l1p1x].get() - params[l1p2x].get());
-    double dy1 = (params[l1p1y].get() - params[l1p2y].get());
-    double dx2 = (params[l2p1x].get() - params[l2p2x].get());
-    double dy2 = (params[l2p1y].get() - params[l2p2y].get());
+    double dx1 = (params[l1p2x].get() - params[l1p1x].get());
+    double dy1 = (params[l1p2y].get() - params[l1p1y].get());
+    double dx2 = (params[l2p2x].get() - params[l2p1x].get());
+    double dy2 = (params[l2p2y].get() - params[l2p1y].get());
     //dot product shows how the lines off to be perpendicular
     double off = dx1 * dx2 + dy1 * dy2;
     return off * off;
@@ -147,18 +152,6 @@ public class Perpendicular implements Constraint {
     out[l2p2y] = g4.y;
   }
 
-
-  @Override
-  public void step(double alpha) {
-
-    System.out.println(angle());
-    
-    step(l1p1x, l1p1y, params[l2p1x].get() - params[l2p2x].get(), params[l2p1y].get() - params[l2p2y].get(), alpha);
-    step(l1p2x, l1p2y, -(params[l2p1x].get() - params[l2p2x].get()), -(params[l2p1y].get() - params[l2p2y].get()), alpha);
-
-    step(l2p1x, l2p1y, (params[l1p1x].get() - params[l1p2x].get()), (params[l1p1y].get() - params[l1p2y].get()), alpha);
-    step(l2p2x, l2p2y, -(params[l1p1x].get() - params[l1p2x].get()), -(params[l1p1y].get() - params[l1p2y].get()), alpha);
-  }
 
   public double angle() {
     double dx1 = (params[l1p2x].get() - params[l1p1x].get());
