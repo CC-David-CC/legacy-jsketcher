@@ -1,4 +1,4 @@
-package cad;
+package cad.gl;
 
 import com.jogamp.opengl.util.Animator;
 
@@ -22,12 +22,12 @@ import java.awt.event.WindowEvent;
  * This version is equal to Brian Paul's version 1.2 1999/10/21
  */
 
-public class Cad2 implements GLEventListener, MouseListener, MouseMotionListener {
+public class Gears implements GLEventListener, MouseListener, MouseMotionListener {
   public static void main(String[] args) {
     Frame frame = new Frame("Gear Demo");
     GLCanvas canvas = new GLCanvas();
 
-    final Cad2 gears = new Cad2();
+    final Gears gears = new Gears();
     canvas.addGLEventListener(gears);
 
     frame.add(canvas);
@@ -47,7 +47,7 @@ public class Cad2 implements GLEventListener, MouseListener, MouseMotionListener
         }
       });
     frame.setVisible(true);
-//    animator.start();
+    animator.start();
   }
 
   private float view_rotx = 20.0f, view_roty = 30.0f, view_rotz = 0.0f;

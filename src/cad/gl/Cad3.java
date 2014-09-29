@@ -1,4 +1,4 @@
-package cad;
+package cad.gl;
 
 import cad.fx.Polygon;
 import cad.fx.Utils3D;

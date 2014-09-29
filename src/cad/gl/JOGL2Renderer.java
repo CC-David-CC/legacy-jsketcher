@@ -1,4 +1,4 @@
-package cad;
+package cad.gl;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
