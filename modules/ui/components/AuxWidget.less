@@ -1,3 +1,4 @@
+@import "./flatEdges.less";
 @border-radius: 3px;
 
 .root {
@@ -8,9 +9,18 @@
 }
 
 .flatBottom {
-  border-radius: @border-radius @border-radius 0 0;
+  ._flatBottom(@border-radius);
 }
 
 .flatTop {
-  border-radius: 0 0 @border-radius @border-radius;
+  ._flatTop(@border-radius);
 }
+
+.flatRight {
+  ._flatRight(@border-radius);
+}
+
+.flatLeft {
+  ._flatLeft(@border-radius);
+}
+
