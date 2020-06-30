@@ -4,6 +4,7 @@ import {MObject} from "../../model/mobject";
 import {AlgNumConstraint} from "../../../sketcher/constr/ANConstraints";
 import {Constraints3D} from "../constraints3d";
 import {AssemblyNode} from "../assembly";
+import Vector from "math/vector";
 
 export class AssemblyCSysNode extends AssemblyNode {
 
@@ -58,6 +59,20 @@ export class AssemblyCSysNode extends AssemblyNode {
     this.kx.set(mx.mxz);
     this.ky.set(mx.myz);
     this.kz.set(mx.mzz);
+
+  }
+
+
+  rotationMatrix() {
+    const {
+      ix, iy, iz, jx, jy, jz, kx, ky, kz
+      } = this;
+
+    return new Matrix3().setBasis([
+      new Vector(ix.get(), iy.get(), iz.get()),
+      new Vector(jx.get(), jy.get(), jz.get()),
+      new Vector(kx.get(), ky.get(), kz.get()),
+    ]);
 
   }
 
