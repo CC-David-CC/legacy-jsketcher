@@ -4,6 +4,7 @@ import { FaceTouchAlignConstraint } from "../constraints/faceTouchAlign";
 import { Plane } from './../../../brep/geom/impl/plane';
 import { AssemblyDOF, ModificationResponse } from "./assemblyDOF";
 import { ConflictDOF } from './conflictDOF';
+import {EdgeAlignConstraint} from "../constraints/edgeAlign";
 
 export class PPPPDOF implements AssemblyDOF {
 
@@ -16,16 +17,21 @@ export class PPPPDOF implements AssemblyDOF {
     this.plane2 = plane2;
   }
 
-  applyTouchAlign(constr: FaceTouchAlignConstraint): AssemblyDOF {
-    return new ConflictDOF(constr, 'plane touch/align constraint cannot be applied when object is at ' + this.description + ' relationship');
-  }
-
   rotate(axis: Vector, angle: number, location: Matrix3, strict: boolean): ModificationResponse {
     return ModificationResponse.REJECTED;
   }
 
   translate(dir: Vector, location: Matrix3, strict: boolean): ModificationResponse {
     return ModificationResponse.REJECTED;
+  }
+
+
+  applyTouchAlign(constr: FaceTouchAlignConstraint): AssemblyDOF {
+    return new ConflictDOF(constr, 'plane touch/align constraint cannot be applied when object is at ' + this.description + ' relationship');
+  }
+
+  applyEdgeAlign(constr: EdgeAlignConstraint): AssemblyDOF {
+    return this;
   }
 
 }
